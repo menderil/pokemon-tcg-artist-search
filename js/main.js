@@ -4,20 +4,20 @@ document.querySelector('button').addEventListener('click', getCards);
 
 async function getCards(){
     let searchInput = document.querySelector('input').value;
-    //console.log(searchInput);
-    
-    const res = await fetch(`https://api.pokemontcg.io/v2/cards?q=artist:"${searchInput}"`);
-    const result = await res.json();
-    searchResult = result.data;
-    //console.log(searchResult);
+    if(searchInput){
+        const res = await fetch(`https://api.pokemontcg.io/v2/cards?q=artist:"${searchInput}"`);
+        const result = await res.json();
+        searchResult = result.data;
+        //console.log(searchResult);
 
-    //sorts the result data by the card object's release date
-    searchResult.sort(function(a,b){
-        return a.set.releaseDate.localeCompare(b.set.releaseDate);
-    })
-
-    displayResults();
-
+        //sorts the result data by the card object's release date
+        searchResult.sort(function(a,b){
+            return a.set.releaseDate.localeCompare(b.set.releaseDate);
+        })
+        displayResults();
+    }else{
+        alert('Please enter a name');
+    }
 }
 
 function displayResults(){
