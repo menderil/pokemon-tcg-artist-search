@@ -1,6 +1,10 @@
 let searchResult = [];
 let ul = document.querySelector('#displayResults');
 document.querySelector('button').addEventListener('click', getCards);
+document.querySelector('form').addEventListener('submit', (event)=>{
+    event.preventDefault()
+    getCards();
+});
 
 async function getCards(){
     let searchInput = document.querySelector('input').value;
